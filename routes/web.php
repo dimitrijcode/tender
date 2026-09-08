@@ -2,13 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-}); 
-
-Route::get('/dashboard', function () {
-    return view('userzone.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('home' );
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'edit'])->name('profile.edit');
